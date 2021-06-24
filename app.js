@@ -67,16 +67,18 @@ derive.Connect
                 mongooseDoc.name = "World";
                 return mongooseDoc.save({validateBeforeSave:false});
             }
+
+            /*----------------------------------------*/
             // insertOne
-            // Benchmark.Suite()
             /*
-            .add("Mongo insertOne", {
-                defer: true,
-                fn: async function(deferred) {
-                    await col.insertOne({key:1, name:"Hello"});
-                    deferred.resolve();
-                }
-            })
+            Benchmark.Suite()
+            //.add("Mongo insertOne", {
+            //    defer: true,
+            //    fn: async function(deferred) {
+            //        await col.insertOne({key:1, name:"Hello"});
+            //        deferred.resolve();
+            //    }
+            //})
             .add("Derive insertOne", {
                 defer: true,
                 fn: async function(deferred) {
@@ -100,25 +102,23 @@ derive.Connect
             .run({ 'async': true });        
             */
 
+            /*----------------------------------------*/
+
+
             // insertMany
             /*
-            let count = 1000;
-            //let manyDocs = [];
+            let count = 100;
             let deriveMany = [];
             let mongooseMany = [];
             while (count-- > 0) {
-                //manyDocs.push({ key:1, name:"Hello" });
                 deriveMany.push (insertDoc());
                 mongooseMany.push(new DocModel({key:1, name:"Hello"}).save({validateBeforeSave: false}));
             }
-            */
 
-            /*
             Benchmark.Suite()
-            /*
-            .add("Mongo insertMany", async function() {
-                await col.insertMany(manyDocs);
-            })
+            // .add("Mongo insertMany", async function() {
+            //    await col.insertMany(manyDocs);
+            //})
             .add("Derive insertMany", {
                 defer: true,
                 fn: async function(deferred) {
@@ -142,8 +142,10 @@ derive.Connect
             })
             .run({ 'async': true });        
             */
+            /*----------------------------------------*/
 
             /*
+            let mongooseDoc = await new DocModel({key:1, name:"Hello"}).save({validateBeforeSave: false})
             Benchmark.Suite()
             .add("Derive Update One", {
                 defer: true,
@@ -155,7 +157,7 @@ derive.Connect
             .add("Mongoose Update One", {
                 defer: true,
                 fn: async function(deferred) {
-                    await mongooseUpdate();
+                    await mongooseUpdate(mongooseDoc);
                     deferred.resolve();
                 }
             })
@@ -166,39 +168,21 @@ derive.Connect
                 console.log('Fastest is ' + this.filter('fastest').map('name'));
             })
             .run({ 'async': true });    
-            */
+            /*----------------------------------------*/
 
-            /*
-            let mongooseDocs = [];
-            let deriveDocs = [];
-            for (let i=0;i<10000;i++) {
-                let mongooseDoc = await new DocModel({key:1, name:"Hello"}).save({validateBeforeSave: false});
-                mongooseDocs.push(mongooseDoc);
-                let deriveDoc = await insertDoc();
-                deriveDocs.push(deriveDoc);
-            }
-            */
-            let mongooseDocs = await DocModel.find({ key: 1 }, null, { limit: 10000 }).exec();
-            let deriveDocs = await DataModel.getAll({key:1}, null, 10000);
-            
-            // let count = 10000;
-            // let deriveUpdateMany = [];
-            //let mongooseUpdateMany = [];
-            // while (count-- > 0) {
-               // deriveUpdateMany.push (updateDoc(deriveDocs[count]));
-                //mongooseUpdateMany.push(mongooseUpdate(mongooseDocs[count]));
-            //}
+
+            let docCount = 1000;
+            let mongooseDocs = await DocModel.find({ key: 1 }, null, { limit: docCount }).exec();
+            let deriveDocs = await DataModel.getAll({key:1}, null, docCount);
 
             Benchmark.Suite()
-            /*
-            .add("Mongo insertMany", async function() {
-                await col.insertMany(manyDocs);
-            })
-            */
+            //.add("Mongo insertMany", async function() {
+            //    await col.insertMany(manyDocs);
+            //})
             .add("Derive updateMany", {
                 defer: true,
                 fn: async function(deferred) {
-                    let count = 10000;
+                    let count = docCount;
                     let deriveUpdateMany = [];
                     while (count-- > 0) {
                         deriveUpdateMany.push (updateDoc(deriveDocs[count]));
@@ -211,7 +195,7 @@ derive.Connect
             .add("Mongoose updateMany", {
                 defer: true,
                 fn: async function(deferred) {
-                    let count = 10000;
+                    let count = docCount;
                     let mongooseUpdateMany = [];
                     while (count-- > 0) {
                         mongooseUpdateMany.push(mongooseUpdate(mongooseDocs[count]));
@@ -227,7 +211,6 @@ derive.Connect
                 console.log('Fastest is ' + this.filter('fastest').map('name'));
             })
             .run({ 'async': true });        
-
 
         });
     }
