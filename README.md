@@ -5,4 +5,6 @@ The results show the concept behind Derive - in which data operations are "aggre
 multiple seprate calls to the DB, like is done with other ODMs (such as Mongoose) - performs better in situations where lots of different data operations are 
 triggered concurrently at roughly the same time.
 
-to run, call `npm install`, then `node app`
+to run: <br>
+Make sure you have a running local MongoDB server on localhost:27017 (or change the `dbUrl` in `app.js` to another url that points to a MongoDB server), <br>
+run `npm install`, then run `node app`.
