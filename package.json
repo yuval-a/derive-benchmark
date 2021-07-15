@@ -11,7 +11,8 @@
   "dependencies": {
     "benchmark": "^2.1.4",
     "blocked": "^1.3.0",
-    "derivejs": "^2.4.1",
+    "blocked-at": "^1.2.0",
+    "derivejs": "^2.6.0",
     "mongodb": "^3.6.9",
     "mongoose": "^5.12.14"
   }
