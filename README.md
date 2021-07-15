@@ -5,11 +5,12 @@ The results show the concept behind Derive - in which data operations are "aggre
 multiple seprate calls to the DB, like is done with other ODMs (such as Mongoose) - performs better in situations where lots of different data operations are 
 triggered concurrently at roughly the same time.
 
-to run: <br>
+## To run
 Make sure you have a running local MongoDB server on localhost:27017 (or change the `dbUrl` in `app.js` to another url that points to a MongoDB server), <br>
 run `npm install`, then run `node app`.
 
-Here are some example results from running in my local machine. You can see that when issuing a single insert or update (and waiting for a response from the DB after each) - Mongoose is faster, however once we try to issue several insert or update operations concurrenty at the same time - Derive show much better performances.
+# Sample Results
+Here are some sample results from running on my local machine. You can see that when issuing a single insert or update (and waiting for a response from the DB after each) - Mongoose is faster, however, once we try to issue several insert or update operations concurrenty at the same time - Derive show much better performances.
 
 ```
 Insert One
