@@ -14,33 +14,33 @@ Here are some sample results from running on my local machine. You can see that 
 
 ```
 Insert One
-Derive x 284 ops/sec ±6.52% (56 runs sampled)
-Average event loop block time: 37.26ms
-Mongoose x 482 ops/sec ±2.02% (72 runs sampled)
-Average event loop block time: 37.26ms
+Derive x 219 ops/sec ±6.84% (46 runs sampled)
+Average event loop block time: 36.21ms
+Mongoose x 526 ops/sec ±2.30% (73 runs sampled)
+Average event loop block time: 49.78ms
 Fastest is Mongoose
 
 
-Insert 100 (Inserting 100 documents concurrently)
-Derive x 49.82 ops/sec ±4.97% (58 runs sampled)
-Average event loop block time: 122.86ms
-Mongoose x 5.82 ops/sec ±2.46% (31 runs sampled)
-Average event loop block time: 145.38ms
+Insert 100
+Derive x 64.83 ops/sec ±1.84% (68 runs sampled)
+Average event loop block time: 0.00ms
+Mongoose x 6.42 ops/sec ±2.61% (34 runs sampled)
+Average event loop block time: 140.42ms
 Fastest is Derive
 
 
 Update One
-Derive x 72.54 ops/sec ±3.37% (47 runs sampled)
+Derive x 66.55 ops/sec ±2.20% (55 runs sampled)
 Average event loop block time: 0.00ms
-Mongoose x 378 ops/sec ±2.38% (76 runs sampled)
+Mongoose x 388 ops/sec ±1.39% (76 runs sampled)
 Average event loop block time: 0.00ms
 Fastest is Mongoose
 
 
-Update 1000 (Updating 1000 documents concurrently)
-Derive x 4.92 ops/sec ±1.73% (28 runs sampled)
-Average event loop block time: 363.43ms
-Mongoose x 0.45 ops/sec ±2.73% (7 runs sampled)
-Average event loop block time: 397.76ms
+Update 1000
+Derive x 5.56 ops/sec ±1.48% (30 runs sampled)
+Average event loop block time: 359.08ms
+Mongoose x 0.47 ops/sec ±2.08% (7 runs sampled)
+Average event loop block time: 390.54ms
 Fastest is Derive
 ```
